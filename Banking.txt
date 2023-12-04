@@ -1,0 +1,37 @@
+class BankingSystem:
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def check_balance(self):
+        return f"Your current balance is ${self.balance}"
+
+    def deposit(self, amount):
+        self.balance += amount
+        return f"Deposit of ${amount} successful. Your new balance is ${self.balance}"
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            return "Insufficient funds. Withdrawal unsuccessful."
+        self.balance -= amount
+        return f"Withdrawal of ${amount} successful. Your new balance is ${self.balance}"
+
+# User Interaction
+bank = BankingSystem()
+
+while True:
+    print("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Quit")
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == '1':
+        print(bank.check_balance())
+    elif choice == '2':
+        amount = float(input("Enter the deposit amount: $"))
+        print(bank.deposit(amount))
+    elif choice == '3':
+        amount = float(input("Enter the withdrawal amount: $"))
+        print(bank.withdraw(amount))
+    elif choice == '4':
+        print("Exiting the banking system. Thank you!")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
